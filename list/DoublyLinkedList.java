@@ -4,10 +4,9 @@ import java.util.LinkedList;
 
 import vocab.Vocab;
 
-public class DoublyLinkedList {
+public class DoublyLinkedList<T>{
 
 
-   
 
     private class Node{
 
@@ -15,7 +14,6 @@ public class DoublyLinkedList {
         Vocab vocab;
         Node next;
         Node prev;
-
 
         Node(){
             vocab=null;
@@ -30,30 +28,25 @@ public class DoublyLinkedList {
             this.prev=null;
         }
 
-       
-
-
     }
-
-
     
     private Node head;
     private Node tail;
-
     private int size;
-
-
-
 
     public DoublyLinkedList(){
 
+        size=0;
         head=null;
         tail=null;
 
     }
 
-
-    public void addVocab(Vocab vocab){
+    
+    /** 
+     * @param vocab
+     */
+    public void add(Vocab vocab){
 
         Node newNode=new Node(vocab);
         if(head==null){
@@ -91,4 +84,5 @@ public class DoublyLinkedList {
         return size;
     }
 
+    
 }

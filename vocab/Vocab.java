@@ -1,5 +1,5 @@
 package vocab;
-import java.util.LinkedList;
+
 
 import list.SinglyLinkedList;
 
@@ -7,18 +7,17 @@ public class Vocab {
     String topic;
     SinglyLinkedList<String> words;
 
-
-   
-    
-
     public Vocab(String topic, SinglyLinkedList<String> words){
 
         this.topic=topic;
         this.words=words;
 
-
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getTopic() {
         return topic;
     }
