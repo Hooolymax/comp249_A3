@@ -35,9 +35,30 @@ public class Vocab {
     }
 
     
+    
     /* public void setWords(SinglyLinkedList words) {
         this.words = words;
     } */
+
+ 
+    public boolean equals(Object obj) {
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Vocab other = (Vocab) obj;
+        if (topic == null) {
+            if (other.topic != null)
+                return false;
+        } else if (!topic.equals(other.topic))
+            return false;
+        if (words == null) {
+            if (other.words != null)
+                return false;
+        } else if (!words.equals(other.words))
+            return false;
+        return true;
+    }
 
     public void printVocab() {
 

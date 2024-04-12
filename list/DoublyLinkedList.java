@@ -33,14 +33,49 @@ public class DoublyLinkedList {
 
     private Node head;
     private Node tail;
-    private int size;
+    /* private int size; */
 
     public DoublyLinkedList() {
 
-        size = 0;
+        /* size = 0; */
         head = null;
         tail = null;
 
+    }
+
+    public int size(){
+        Node currNode = head;
+        int count = 0;
+        while (currNode != null){
+            count ++;
+            currNode = currNode.next;
+        }
+        return count;
+    }
+
+    public boolean equals(Object otherObject){
+        if (otherObject == null)
+            return false;
+        else if (this.getClass() != otherObject.getClass())
+            return false;
+        else {
+            DoublyLinkedList oList = (DoublyLinkedList) otherObject;
+            if (this.size() != oList.size())
+                return false;
+            
+            Node position = head;
+            Node oPosition = oList.head;
+            while (position != null){
+                if (!position.vocab.equals(oPosition.vocab))
+                    return false;
+                position = position.next;
+                oPosition = oPosition.next;
+            }
+            
+            return true;
+            
+        }
+        
     }
 
     /**
@@ -60,7 +95,7 @@ public class DoublyLinkedList {
 
         }
 
-        size++;
+        /* size++; */
 
     }
 
@@ -74,8 +109,8 @@ public class DoublyLinkedList {
 
     }
 
-    public int size() {
+    /* public int size() {
         return size;
     }
-
+ */
 }
