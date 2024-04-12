@@ -3,26 +3,30 @@ package vocab;
 
 import list.SinglyLinkedList;
 
+
 public class Vocab {
+
     String topic;
-    SinglyLinkedList<String> words;
+    SinglyLinkedList words;
 
-    public Vocab(String topic, SinglyLinkedList<String> words){
+    public Vocab(){
+        this.topic = "n/a";
+        this.words = new SinglyLinkedList();
+    }
 
-        this.topic=topic;
-        this.words=words;
+    public Vocab(String topic, SinglyLinkedList words) {
+
+        this.topic = topic;
+        this.words = words;
 
     }
 
     
-    /** 
-     * @return String
-     */
     public String getTopic() {
         return topic;
     }
 
-    public SinglyLinkedList<String> getSWords() {
+    public SinglyLinkedList getWords() {
         return words;
     }
 
@@ -30,23 +34,16 @@ public class Vocab {
         this.topic = topic;
     }
 
-    public void setSlist(SinglyLinkedList<String> words) {
+    
+    /* public void setWords(SinglyLinkedList words) {
         this.words = words;
+    } */
+
+    public void printVocab() {
+
+        System.out.println("Topic: " + topic);
+
+        System.out.println(words.outputList());
     }
 
-
-
-    public void printVocab(){
-
-        System.out.println("Topic: "+ topic );
-
-        for(String word: words){
-            System.out.println(word);
-            
-        }
-    }
-
-    
-
-    
 }
