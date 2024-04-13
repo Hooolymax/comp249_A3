@@ -149,6 +149,26 @@ public class DoublyLinkedList {
         
     }
 
+    public ArrayList<String> findTopicsWithWord(String word){
+        Node currNode = head;
+        ArrayList<String> topics = new ArrayList<>();
+        while (currNode != null) {
+            if (currNode.vocab.getWords().findWord(word)) // if word found in topic
+                topics.add(currNode.vocab.getTopic());
+            currNode = currNode.next;
+        }
+        return topics;
+    }
+
+    public ArrayList<String> findWordsByLetter(char letter){
+        Node currNode = head;
+        ArrayList<String> words = new ArrayList<>();
+        while (currNode != null) {
+            words.addAll(currNode.vocab.getWords().wordsStartingWithLetter(letter));
+            currNode = currNode.next;
+        }
+        return words;
+    }
 
     /* public int size() {
         return size;

@@ -116,13 +116,18 @@ public class Driver {
 
                 // search topics for a word
                 case 6:
-
-                    break;
+                    System.out.println("Emter the word you want to find: ");
+                    ArrayList<String> topicsWithWord = vocabList.findTopicsWithWord(sc2.next());
+                    if (topicsWithWord.size() < 1)
+                        System.out.println("the word was not found in the current database");
+                    else
+                        System.out.println(topicsWithWord);
+                break;
 
                 // load from a file
                 case 7:
 
-                {
+                
 
                     System.out.println("Please enter the full file name");
 
@@ -132,23 +137,28 @@ public class Driver {
                     loadVocab("input/" + fileToLoad);
                     System.out.println(fileToLoad + " Loaded successfully");
 
-                }
-                    break;
+                
+                break;
 
                 // show all words starting with a given letter
                 case 8:
-
-                    break;
+                    System.out.println("Enter the starting letter: ");
+                    ArrayList<String> words = vocabList.findWordsByLetter(sc2.next().charAt(0));
+                    if (words.size() < 1)
+                        System.out.println("no words starting with this letter");
+                    else
+                        System.out.println(words);
+                break;
 
                 // save to file
                 case 9:
 
-                    break;
+                break;
 
                 case 0:
                     System.out.println("Exiting the program, thank you");
-
-                    break;
+                    System.exit(0);
+                break;
 
                 default:
 
@@ -225,7 +235,7 @@ public class Driver {
                             break;
                         }
 
-                        words.add(word);
+                        words.addWord(word);
                     }
 
                     vocabList.add(new Vocab(topic, words));

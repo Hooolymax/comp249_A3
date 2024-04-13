@@ -90,6 +90,27 @@ public class SinglyLinkedList {
         
     }
 
+    public boolean findWord(String word){
+        Node currNode = head;
+        while (currNode != null) {
+            if (currNode.word.equals(word))
+                return true;
+            currNode = currNode.next;
+        }
+        return false;
+    }
+
+    public ArrayList<String> wordsStartingWithLetter(char letter){
+        Node currNode = head;
+        ArrayList<String> words = new ArrayList<>();
+        while (currNode != null) {
+            if (currNode.word.charAt(0) == (letter))
+                words.add(currNode.word);
+            currNode = currNode.next;
+        }
+        return words;
+    }
+
     
     /* public void printlnList() {
         for (E element : this) {
