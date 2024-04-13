@@ -80,13 +80,17 @@ public class Driver {
                     displayTopics();
                     System.out.print("Enter your choice: ");
                     int topicNumToAdd = sc2.nextInt();
+                    if (topicNumToAdd == 0){
+                        continue;
+                    }
                     System.out.println("Enter topic name: ");
                     String topicName = sc2.next();
                     System.out.println("Enter a word - to quit press Enter: ");
                     SinglyLinkedList wordsToEnter = new SinglyLinkedList();
                     while (true){
-                        String word = sc2.next();
-                        if (word.equals("\\n")) 
+                        sc2.nextLine();  // Clear the newline character left in the buffer
+                        String word = sc2.nextLine();
+                        if (word.isEmpty())
                             break;
                         wordsToEnter.addWord(word);
                     }
@@ -105,7 +109,9 @@ public class Driver {
                     displayTopics();
                     System.out.print("Enter your choice: ");
                     int topicNumToDel = sc2.nextInt();
-
+                    if (topicNumToDel == 0){
+                        continue;
+                    }
                     vocabList.removeNode(topicNumToDel);
                 break;
 
@@ -179,7 +185,7 @@ public class Driver {
     public static void readVocab(ArrayList list) {
 
         try {
-            Scanner reader1 = new Scanner(new FileInputStream("input/Input files.txt"));
+            Scanner reader1 = new Scanner(new FileInputStream("input/input_file.txt"));
 
             while (reader1.hasNextLine()) {
 

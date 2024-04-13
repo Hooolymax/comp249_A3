@@ -125,13 +125,20 @@ public class DoublyLinkedList {
 
     /**
      * inserts a topic before the nodeNumber topic
-     * @param nodeNumber
+     * @param nodeNum
      */
-    public void insertNode(int nodeNumber, Vocab vocab){
+    public void insertNode(int nodeNum, Vocab vocab){
+        Node newNode = new Node(vocab);
+
+        if (nodeNum == 1){ // only 1 node
+            newNode.next = head;
+            head = newNode;
+            return;
+        }
+        
 
         Node currNode = head;
-        Node newNode = new Node(vocab);
-        for (int i = 1; i < nodeNumber; i++, currNode = currNode.next); // currNode is previous node now
+        for (int i = 1; i < nodeNum - 1; i++, currNode = currNode.next); // currNode is previous node now
         newNode.next = currNode.next;
         newNode.prev = currNode;
         currNode.next.prev = newNode;
@@ -141,8 +148,24 @@ public class DoublyLinkedList {
 
 
     public void removeNode(int nodeNum){
+        if (nodeNum == 1){
+            if (this.size() == 1){
+                head = null;
+                return;
+            }
+
+            head = head.next;
+            head.prev = null;
+            return;
+        }
+        if (nodeNum == this.size()){
+            tail = tail.prev;
+            tail.next = null;
+            return;
+        }
+
         Node currNode = head;
-        for (int i = 1; i < nodeNum; i++, currNode = currNode.next);  // node before the node to remove found
+        for (int i = 1; i < nodeNum - 1; i++, currNode = currNode.next);  // node before the node to remove found
         currNode.next = currNode.next.next; // next link
         currNode = currNode.next; //moving to the node after
         currNode.prev = currNode.prev.prev;
