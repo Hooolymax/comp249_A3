@@ -102,13 +102,7 @@ public class DoublyLinkedList {
     }
 
     public ArrayList<String> getAllList() {
-        ArrayList<String> vocabs = new ArrayList<>();
-        Node current = head;
-        while (current != null) {
-            vocabs.add(current.vocab.printVocab());
-            current = current.next;
-        }
-        return vocabs;
+        return null;
 
     }
 

@@ -143,7 +143,7 @@ public class Driver {
                     fileToLoad = sc2.nextLine();
 
                     loadVocab("input/" + fileToLoad);
-                    System.out.println(fileToLoad + " Loaded successfully");
+                    
 
                 
                 break;
@@ -230,45 +230,63 @@ public class Driver {
      * @throws IOException if an input or output exception occurred
      */
 
-    public static DoublyLinkedList loadVocab(String filename) {
+    
 
-        try {
+        public static DoublyLinkedList loadVocab(String filename) {
 
-            Scanner reader2 = new Scanner(new FileInputStream(filename));
+        
 
-            while (reader2.hasNextLine()) {
+            try (Scanner reader2 = new Scanner(new FileInputStream(filename))) {
+                while (reader2.hasNextLine()) {
 
-                String line = reader2.nextLine().trim();
+                    String line = reader2.nextLine().trim();
 
-                if (line.startsWith("#")) {
+                    if (line.startsWith("#")) {
 
-                    String topic = line.substring(1).trim();
-                    SinglyLinkedList words = new SinglyLinkedList();
+                        String topic = line.substring(1).trim();
+                        SinglyLinkedList words = new SinglyLinkedList();
 
-                    while (reader2.hasNextLine()) {
-                        String word = reader2.nextLine().trim();
-                        if (word.startsWith("#") || word.isEmpty()) {
+                        while (reader2.hasNextLine()) {
+                            String word = reader2.nextLine().trim();
+                            if (word.startsWith("#") || word.isEmpty()) {
 
-                            reader2.reset();
-                            break;
+                                reader2.reset();
+                                break;
+                            }
+
+                            words.addWord(word);
                         }
 
-                        words.addWord(word);
-                    }
+                        vocabList.add(new Vocab(topic, words));
+                       
 
-                    vocabList.add(new Vocab(topic, words));
+                    }
                 }
+                System.out.println("Done loading");
             }
 
-        }
+        
 
         catch (IOException e) {
             System.out.println("The file can not be found");
         }
 
+        
         return vocabList;
+        
 
     }
+
+
+
+
+
+
+
+
+
+
+
 
     public static void displayTopics(){
         ArrayList<String> topics = vocabList.outputTopics();
