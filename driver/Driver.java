@@ -184,7 +184,43 @@ public class Driver {
                 break;
 
                 // inset a new topic after another one
-                case 3:
+                case 3:{
+
+                    System.out.println("Pick a topic");
+                    displayTopics();
+                    System.out.print("Enter your choice: ");
+                    int topicNumToAddAfter = sc2.nextInt();
+
+                    System.out.println("Enter topic name: ");
+                    String topicNameToAddAfter = sc2.next();
+                    System.out.println("Enter a word - to quit press Enter: ");
+
+                    SinglyLinkedList wordsToEnterAfter = new SinglyLinkedList();
+                    while (true){
+                        sc2.nextLine();  // Clear the newline character left in the buffer
+                        String word;
+                        while (!(word = sc2.nextLine()).isEmpty()){
+                            wordsToEnterAfter.addWord(word);
+                        }
+                            break;
+                        
+                            
+                            
+                                
+                       
+                    }
+
+                    insertTopicAfter(topicNumToAddAfter, topicNameToAddAfter, wordsToEnterAfter);
+
+
+    
+                }
+
+               
+
+
+
+
 
                     break;
 
@@ -390,6 +426,14 @@ public class Driver {
         Vocab vocab = new Vocab(topicName, words);
         vocabList.insertNode(topicNum, vocab);
     }
+
+
+    public static void insertTopicAfter(int topicNum, String topicName, SinglyLinkedList words){
+        Vocab vocab = new Vocab(topicName, words);
+        vocabList.insertNodeAfter(topicNum, vocab);
+    }
+
+
 
 
 

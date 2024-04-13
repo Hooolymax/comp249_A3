@@ -145,6 +145,56 @@ public class DoublyLinkedList {
     }
 
 
+
+    /**
+     * inserts a topic after the nodeNumber topic
+     * @param nodeNum
+     */
+    public void insertNodeAfter(int nodeNum, Vocab vocab){
+
+
+        Node newNode = new Node(vocab);
+
+        if(head==null){
+
+            head = newNode;
+
+            tail=newNode;
+
+            return;
+        }
+
+        Node current=head;
+        int count=1;
+
+        while(current!=null&&count<nodeNum){
+
+            current=current.next;
+            count++;
+
+        }
+
+        if(current==null){
+            System.out.println("Invalid position");
+
+            return;
+        }
+
+        newNode.next=current.next;
+        newNode.prev=current;
+        if(current.next!=null){
+            current.next.prev=newNode;
+        }else{
+            tail=newNode;
+        }
+        current.next=newNode;
+
+
+
+
+
+    }
+
     public void removeNode(int nodeNum){
         if (nodeNum == 1){
             if (this.size() == 1){
