@@ -66,7 +66,7 @@ public class Driver {
                 continue;
 
             }
-
+// handle exception of invalid input
             switch (choice) {
 
                 // browser a topic
@@ -77,9 +77,9 @@ public class Driver {
                 // insert a new topic before another one
                 case 2:
                     System.out.println("Pick a topic");
-                    System.out.println(vocabList.outputTopics());
+                    displayTopics();
                     System.out.print("Enter your choice: ");
-                    int topicNum = sc2.nextInt();
+                    int topicNumToAdd = sc2.nextInt();
                     System.out.println("Enter topic name: ");
                     String topicName = sc2.next();
                     System.out.println("Enter a word - to quit press Enter: ");
@@ -87,11 +87,11 @@ public class Driver {
                     while (true){
                         String word = sc2.next();
                         if (word.equals("\\n")) 
-                            break
+                            break;
                         wordsToEnter.addWord(word);
                     }
 
-                    insertTopic(topicNum, topicName, wordsToEnter);
+                    insertTopic(topicNumToAdd, topicName, wordsToEnter);
                 break;
 
                 // inset a new topic after another one
@@ -101,8 +101,13 @@ public class Driver {
 
                 // remove a topic
                 case 4:
+                    System.out.println("Pick a topic");
+                    displayTopics();
+                    System.out.print("Enter your choice: ");
+                    int topicNumToDel = sc2.nextInt();
 
-                    break;
+                    vocabList.removeNode(topicNumToDel);
+                break;
 
                 // modify a topic
                 case 5:
@@ -237,7 +242,14 @@ public class Driver {
 
     }
 
-    
+    public static void displayTopics(){
+        ArrayList<String> topics = vocabList.outputTopics();
+        int n = 1;
+        for (String topic : topics){
+            System.out.println(n++ + " " + topic);
+        }
+        System.out.println("0 Exit");
+    }
 
     /**
      * creates vocab from given parametres and adds it to vocabList before the topicNum element
@@ -249,4 +261,9 @@ public class Driver {
         Vocab vocab = new Vocab(topicName, words);
         vocabList.insertNode(topicNum, vocab);
     }
+
+
+
+
+
 }

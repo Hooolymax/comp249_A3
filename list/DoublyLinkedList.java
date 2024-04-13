@@ -140,6 +140,16 @@ public class DoublyLinkedList {
     }
 
 
+    public void removeNode(int nodeNum){
+        Node currNode = head;
+        for (int i = 1; i < nodeNum; i++, currNode = currNode.next);  // node before the node to remove found
+        currNode.next = currNode.next.next; // next link
+        currNode = currNode.next; //moving to the node after
+        currNode.prev = currNode.prev.prev;
+        
+    }
+
+
     /* public int size() {
         return size;
     }
