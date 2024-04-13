@@ -1,6 +1,8 @@
 package vocab;
 
 
+import java.util.ArrayList;
+
 import list.SinglyLinkedList;
 
 
@@ -69,7 +71,28 @@ public class Vocab {
 
         System.out.println("Topic: " + topic);
 
-        System.out.println(words.outputList());
+        ArrayList<String> wordlist=words.outputList();
+
+    
+        if(!wordlist.isEmpty()){
+            int count=1;
+
+            for(String word: wordlist){
+                if(count%5==0){
+                    System.out.println();
+    
+                }
+                else{
+                    System.out.print(count +": "+word);
+                    System.out.print("     ");
+                }
+    
+                count++;
+               
+            }
+        
+            
+        }
     }
 
 

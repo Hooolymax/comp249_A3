@@ -31,6 +31,9 @@ public class DoublyLinkedList {
             this.prev = null;
         }
 
+
+
+
     }
 
     private Node head;
@@ -188,6 +191,55 @@ public class DoublyLinkedList {
         return words;
     }
 
+    public void printListTopics() {
+
+        if(head==null){
+            System.out.println("No topics avaliable");
+
+        }
+
+        
+
+        int count=1;
+
+        for(Node current = head;current!=null;current=current.next){
+
+
+            System.out.println(count+" "+current.vocab.getTopic());
+
+            
+            count++;
+
+
+
+
+        }
+       
+      
+
+        
+    }
+
+    public Vocab getVocab(int index) {
+        if (index <= 0 || index > this.size()) {
+            System.out.println("Invalid topic number.");
+            return null; // Return null if the index is out of bounds
+        }
+    
+        Node current = head;
+        int count = 1;
+        while (current != null && count < index) {
+            current = current.next;
+            count++;
+        }
+    
+        if (current != null) {
+            return current.vocab;
+        } else {
+            return null;
+        }
+    }
+    
     /* public int size() {
         return size;
     }

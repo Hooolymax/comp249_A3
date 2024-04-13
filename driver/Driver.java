@@ -23,6 +23,7 @@ public class Driver {
 
     static Scanner sc = new Scanner(System.in);
     static Scanner sc2 = new Scanner(System.in);
+    static Scanner sc3=new Scanner(System.in);
 
     static DoublyLinkedList vocabList = new DoublyLinkedList();
 
@@ -30,13 +31,6 @@ public class Driver {
 
         ArrayList<String> vocab = new ArrayList<>();
 
-        // read the vocab topics from the input file to the arraylist
-        // test only
-        readVocab(vocab);
-
-        for (String topic : vocab) {
-            System.out.println(topic);
-        }
 
         int choice = 1;
 
@@ -71,8 +65,97 @@ public class Driver {
 // handle exception of invalid input
             switch (choice) {
 
-                // browser a topic
-                case 1:
+                // browse a topic
+                case 1:{
+
+
+                    int topicChoice=0;
+                    
+
+                    do{
+
+                        System.out.println("------------------------------------");
+                        System.out.println("            Pick a topic            ");
+                        System.out.println("------------------------------------");
+                        System.out.println();
+
+                        vocabList.printListTopics();
+
+
+
+                        System.out.println("0 Exit");
+                        System.out.println("------------------------------------");
+
+                        
+
+                        System.out.println("Enter your choice: ");
+
+                        
+
+                        try{
+
+                            topicChoice=sc3.nextInt();
+
+
+                          
+                            if(topicChoice==0){
+                                break;
+                            }
+
+                            Vocab selectedVocab = vocabList.getVocab(topicChoice);
+                            if (selectedVocab != null) {
+                                selectedVocab.printVocab(); // Display the words in the chosen topic
+
+                                System.out.println("");
+                            } else {
+                                System.out.println("Invalid choice, please try again.");
+                            }
+
+                            
+                              
+
+                          
+
+                           selectedVocab.getWords();
+
+
+
+
+
+                            
+
+                            
+                            
+                            
+
+                        }catch(InputMismatchException e){
+                            System.out.println("Invalid input");
+
+                        }
+                    
+
+                    }while(topicChoice!=0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                }
+
+                
 
                     break;
 
