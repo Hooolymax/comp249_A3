@@ -14,6 +14,11 @@ public class Vocab {
         this.words = new SinglyLinkedList();
     }
 
+    public Vocab(String topic){
+        this.topic = topic;
+        this.words = new SinglyLinkedList();
+    }
+
     public Vocab(String topic, SinglyLinkedList words) {
 
         this.topic = topic;

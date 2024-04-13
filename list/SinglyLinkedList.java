@@ -79,6 +79,17 @@ public class SinglyLinkedList {
         return words;
     }
 
+    /**
+     * adds word to the start of the list
+     * @param word
+     */
+    public void addWord(String word){
+        Node newNode = new Node(word);
+        newNode.next = head;
+        head = newNode;
+        
+    }
+
     
     /* public void printlnList() {
         for (E element : this) {

@@ -2,6 +2,8 @@ package list;
 
 
 
+import java.util.ArrayList;
+
 import vocab.Vocab;
 
 
@@ -108,6 +110,35 @@ public class DoublyLinkedList {
         }
 
     }
+
+    public ArrayList<String> outputTopics(){
+        ArrayList<String> topics = new ArrayList<>();
+        Node currNode = head;
+        while (currNode != null) {
+            topics.add(currNode.vocab.getTopic());
+            currNode = currNode.next;
+        }
+
+        return topics;
+    }
+
+
+    /**
+     * inserts a topic before the nodeNumber topic
+     * @param nodeNumber
+     */
+    public void insertNode(int nodeNumber, Vocab vocab){
+
+        Node currNode = head;
+        Node newNode = new Node(vocab);
+        for (int i = 1; i < nodeNumber; i++, currNode = currNode.next); // currNode is previous node now
+        newNode.next = currNode.next;
+        newNode.prev = currNode;
+        currNode.next.prev = newNode;
+        currNode.next = newNode;
+
+    }
+
 
     /* public int size() {
         return size;

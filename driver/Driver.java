@@ -76,8 +76,23 @@ public class Driver {
 
                 // insert a new topic before another one
                 case 2:
+                    System.out.println("Pick a topic");
+                    System.out.println(vocabList.outputTopics());
+                    System.out.print("Enter your choice: ");
+                    int topicNum = sc2.nextInt();
+                    System.out.println("Enter topic name: ");
+                    String topicName = sc2.next();
+                    System.out.println("Enter a word - to quit press Enter: ");
+                    SinglyLinkedList wordsToEnter = new SinglyLinkedList();
+                    while (true){
+                        String word = sc2.next();
+                        if (word.equals("\\n")) 
+                            break
+                        wordsToEnter.addWord(word);
+                    }
 
-                    break;
+                    insertTopic(topicNum, topicName, wordsToEnter);
+                break;
 
                 // inset a new topic after another one
                 case 3:
@@ -222,4 +237,16 @@ public class Driver {
 
     }
 
+    
+
+    /**
+     * creates vocab from given parametres and adds it to vocabList before the topicNum element
+     * @param topicNum
+     * @param topicName
+     * @param words
+     */
+    public static void insertTopic(int topicNum, String topicName, SinglyLinkedList words){
+        Vocab vocab = new Vocab(topicName, words);
+        vocabList.insertNode(topicNum, vocab);
+    }
 }
