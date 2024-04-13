@@ -13,6 +13,8 @@ import java.util.Scanner;
 
 import java.util.LinkedList;
 import java.util.ArrayList;
+import java.util.Collections;
+
 import list.DoublyLinkedList;
 import list.SinglyLinkedList;
 import vocab.Vocab;
@@ -150,6 +152,8 @@ public class Driver {
                 case 8:
                     System.out.println("Enter the starting letter: ");
                     ArrayList<String> words = vocabList.findWordsByLetter(sc2.next().charAt(0));
+                    Collections.sort(words);
+// migh need to do sort manually
                     if (words.size() < 1)
                         System.out.println("no words starting with this letter");
                     else
@@ -158,6 +162,14 @@ public class Driver {
 
                 // save to file
                 case 9:
+                    try(PrintWriter fileWriter = new PrintWriter(new FileOutputStream("output/output_file.txt"))){
+// format output
+                        fileWriter.println(vocabList.getAllList());
+                        System.out.println("File successfully saved");
+                    } catch (FileNotFoundException e){
+                        System.out.println("error during file creation");
+                    }
+
 
                 break;
 

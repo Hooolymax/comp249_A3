@@ -65,11 +65,11 @@ public class Vocab {
         return true;
     }
 
-    public void printVocab() {
+    public String printVocab() {
 
-        System.out.println("Topic: " + topic);
+        return ("#" + topic + words.outputList());
 
-        System.out.println(words.outputList());
+        
     }
 
 }
