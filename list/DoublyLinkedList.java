@@ -1,3 +1,8 @@
+// -----------------------------------------------------
+// COMP249 Assignment 3 due 15.04.2024
+// Written by: Alisa Ignatina 40267100 and Jinghao Lai 40041316 
+// -----------------------------------------------------
+
 package list;
 
 
@@ -86,7 +91,7 @@ public class DoublyLinkedList {
     /**
      * @param vocab
      */
-    public void add(Vocab vocab) {
+    public void addVocab(Vocab vocab) {
 
         Node newNode = new Node(vocab);
         if (head == null) {
@@ -104,8 +109,14 @@ public class DoublyLinkedList {
 
     }
 
-    public ArrayList<String> getAllList() {
-        return null;
+    public ArrayList<ArrayList<String>> getAllList() {
+        ArrayList<ArrayList<String>> vocabs = new ArrayList<>();
+        Node current = head;
+        while (current != null) {
+            vocabs.add(current.vocab.toList());
+            current = current.next;
+        }
+        return vocabs;
 
     }
 

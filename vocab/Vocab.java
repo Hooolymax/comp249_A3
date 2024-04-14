@@ -1,3 +1,8 @@
+// -----------------------------------------------------
+// COMP249 Assignment 3 due 15.04.2024
+// Written by: Alisa Ignatina 40267100 and Jinghao Lai 40041316 
+// -----------------------------------------------------
+
 package vocab;
 
 
@@ -71,7 +76,7 @@ public class Vocab {
 
         System.out.println("Topic: " + topic);
 
-        ArrayList<String> wordlist=words.outputList();
+        ArrayList<String> wordlist=words.outputWordsList();
 
     
         if(!wordlist.isEmpty()){
@@ -95,7 +100,15 @@ public class Vocab {
         }
     }
 
+    
 
+    
+    public ArrayList<String> toList() {
+        ArrayList<String> vocab= new ArrayList<>();
+        vocab.add(topic);
+        vocab.addAll(words.outputWordsList());
+        return vocab;
+    }
 
     public void printTopics(){
         System.out.println(" " + topic);

@@ -1,3 +1,8 @@
+// -----------------------------------------------------
+// COMP249 Assignment 3 due 15.04.2024
+// Written by: Alisa Ignatina 40267100 and Jinghao Lai 40041316 
+// -----------------------------------------------------
+
 package list;
 
 import java.util.ArrayList;
@@ -68,7 +73,7 @@ public class SinglyLinkedList {
      * extracts all words from linkedList into ArrayList
      * @return ArrayList of words
      */
-    public ArrayList<String> outputList(){
+    public ArrayList<String> outputWordsList(){
         ArrayList<String> words = new ArrayList<>();
         Node currNode = head;
         while (currNode != null) {

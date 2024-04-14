@@ -1,23 +1,27 @@
+// -----------------------------------------------------
+// COMP249 Assignment 3 due 15.04.2024
+// Written by: Alisa Ignatina 40267100 and Jinghao Lai 40041316 
+// -----------------------------------------------------
+
+
 package driver;
 
 import java.io.PrintWriter;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+
 import java.util.InputMismatchException;
-
 import java.util.Scanner;
-
-import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import list.DoublyLinkedList;
 import list.SinglyLinkedList;
 import vocab.Vocab;
+
+
 
 public class Driver {
 
@@ -29,7 +33,6 @@ public class Driver {
 
     public static void main(String[] args) {
 
-        ArrayList<String> vocab = new ArrayList<>();
 
 
         int choice = 1;
@@ -62,7 +65,8 @@ public class Driver {
                 continue;
 
             }
-// handle exception of invalid input
+
+            try{
             switch (choice) {
 
                 // browse a topic
@@ -111,22 +115,12 @@ public class Driver {
                                 System.out.println("Invalid choice, please try again.");
                             }
 
-                            
-                              
-
-                          
+   
 
                            selectedVocab.getWords();
 
 
 
-
-
-                            
-
-                            
-                            
-                            
 
                         }catch(InputMismatchException e){
                             System.out.println("Invalid input");
@@ -137,27 +131,8 @@ public class Driver {
                     }while(topicChoice!=0);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 }
-
-                
-
-                    break;
+                break;
 
                 // insert a new topic before another one
                 case 2:
@@ -209,27 +184,17 @@ public class Driver {
                         while (!(word = sc2.nextLine()).isEmpty()){
                             wordsToEnterAfter.addWord(word);
                         }
-                            break;
-                        
-                            
-                            
-                                
+
+                        break;
+                               
                        
                     }
 
                     insertTopicAfter(topicNumToAddAfter, topicNameToAddAfter, wordsToEnterAfter);
 
-
-    
                 }
 
-               
-
-
-
-
-
-                    break;
+                break;
 
                 // remove a topic
                 case 4:
@@ -282,8 +247,7 @@ public class Driver {
 
 
                 }
-
-                    break;
+                break;
 
                 // search topics for a word
                 case 6:
@@ -315,8 +279,7 @@ public class Driver {
                 case 8:
                     System.out.println("Enter the starting letter: ");
                     ArrayList<String> words = vocabList.findWordsByLetter(sc2.next().charAt(0));
-                    Collections.sort(words);
-// migh need to do sort manually
+                    words.sort(null);  // sorts alphabetically
                     if (words.size() < 1)
                         System.out.println("no words starting with this letter");
                     else
@@ -325,9 +288,18 @@ public class Driver {
 
                 // save to file
                 case 9:
-                    try(PrintWriter fileWriter = new PrintWriter(new FileOutputStream("output/output_file.txt"))){
-// format output
-                        fileWriter.println(vocabList.getAllList());
+                    clearFile();   // clears output file after previous runs
+                    try(PrintWriter fileWriter = new PrintWriter(new FileOutputStream("output/output_file.txt", true))){
+
+                        ArrayList<ArrayList<String>> list = vocabList.getAllList();
+                        for (int i = 0; i < list.size(); i++){
+                            fileWriter.println("#"+list.get(i).get(0)); // print topic
+                            for (int j = 1; j < list.get(i).size(); j++){
+                                fileWriter.println(list.get(i).get(j)); // print word
+                            }
+                            fileWriter.println();
+                        }
+                        
                         System.out.println("File successfully saved");
                     } catch (FileNotFoundException e){
                         System.out.println("error during file creation");
@@ -346,17 +318,29 @@ public class Driver {
                     System.out.println("Invalid Input");
 
             }
+            } catch (Exception e){
+                System.out.println("wrong input");
+                System.out.println(e.getStackTrace());
+                System.out.println("Please try again");
+                continue;
+            }
 
         }
 
         while (choice != 0);
 
-        // test //
+        
 
     }
 
-    // test only
-
+    
+    private static void clearFile() {
+        try (PrintWriter writer = new PrintWriter("output/output_file.txt")) {
+            // Clearing the file by opening it in overwrite mode and closing it immediately.
+        } catch (IOException e) {
+            System.err.println("Error when clearing the file: " + e.getMessage());
+        }
+    }
     
 
     public static void readVocab(ArrayList list) {
@@ -397,48 +381,45 @@ public class Driver {
 
     
 
-        public static DoublyLinkedList loadVocab(String filename) {
+    public static DoublyLinkedList loadVocab(String filename) {
 
-        
+    
 
-            try (Scanner reader2 = new Scanner(new FileInputStream(filename))) {
-                while (reader2.hasNextLine()) {
+        try (Scanner reader2 = new Scanner(new FileInputStream(filename))) {
+            while (reader2.hasNextLine()) {
 
-                    String line = reader2.nextLine().trim();
+                String line = reader2.nextLine().trim();
 
-                    if (line.startsWith("#")) {
+                if (line.startsWith("#")) {
 
-                        String topic = line.substring(1).trim();
-                        SinglyLinkedList words = new SinglyLinkedList();
+                    String topic = line.substring(1).trim();
+                    SinglyLinkedList words = new SinglyLinkedList();
 
-                        while (reader2.hasNextLine()) {
-                            String word = reader2.nextLine().trim();
-                            if (word.startsWith("#") || word.isEmpty()) {
+                    while (reader2.hasNextLine()) {
+                        String word = reader2.nextLine().trim();
+                        if (word.startsWith("#") || word.isEmpty()) {
 
-                                reader2.reset();
-                                break;
-                            }
-
-                            words.addWord(word);
+                            reader2.reset();
+                            break;
                         }
 
-                        vocabList.add(new Vocab(topic, words));
-                       
-
+                        words.addWord(word);
                     }
+
+                    vocabList.addVocab(new Vocab(topic, words));
+                    
+
                 }
-                System.out.println("Done loading");
             }
+            System.out.println("Done loading");
 
-        
-
-        catch (IOException e) {
+        }catch (IOException e) {
             System.out.println("The file can not be found");
         }
 
-        
+    
         return vocabList;
-        
+    
 
     }
 
@@ -461,6 +442,8 @@ public class Driver {
         }
         System.out.println("0 Exit");
     }
+
+
 
     /**
      * creates vocab from given parametres and adds it to vocabList before the topicNum element
@@ -589,6 +572,7 @@ public class Driver {
     }
 
 
+    
 
 
 
