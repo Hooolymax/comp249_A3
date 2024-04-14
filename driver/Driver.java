@@ -161,7 +161,9 @@ public class Driver {
 
                 // insert a new topic before another one
                 case 2:
-                    System.out.println("Pick a topic");
+                System.out.println("------------------------------------");
+                System.out.println("            Pick a topic            ");
+                System.out.println("------------------------------------");
                     displayTopics();
                     System.out.print("Enter your choice: ");
                     int topicNumToAdd = sc2.nextInt();
@@ -186,10 +188,15 @@ public class Driver {
                 // inset a new topic after another one
                 case 3:{
 
-                    System.out.println("Pick a topic");
+                    System.out.println("------------------------------------");
+                    System.out.println("            Pick a topic            ");
+                    System.out.println("------------------------------------");
                     displayTopics();
                     System.out.print("Enter your choice: ");
                     int topicNumToAddAfter = sc2.nextInt();
+                    if (topicNumToAddAfter == 0){
+                        continue;
+                    }
 
                     System.out.println("Enter topic name: ");
                     String topicNameToAddAfter = sc2.next();
@@ -237,7 +244,44 @@ public class Driver {
                 break;
 
                 // modify a topic
-                case 5:
+                case 5:{
+
+
+                    System.out.println("Pick a topic");
+                    displayTopics();
+                    System.out.println("Enter your choice: ");
+
+
+
+                    try{
+
+                        int choice5=sc3.nextInt();
+
+
+                      
+                        if(choice5==0){
+                            break;
+                        }
+
+                        Vocab selectedVocab = vocabList.getVocab(choice5);
+                        if (selectedVocab != null) {
+                            
+                            modifyTopicsMenu(selectedVocab);
+
+                            System.out.println("");
+                        } else {
+                            System.out.println("Invalid choice, please try again.");
+                        }
+                    }catch(InputMismatchException e){
+                        System.out.println("Invalid input");
+
+                    }
+
+
+
+
+
+                }
 
                     break;
 
@@ -312,6 +356,8 @@ public class Driver {
     }
 
     // test only
+
+    
 
     public static void readVocab(ArrayList list) {
 
@@ -433,6 +479,114 @@ public class Driver {
         vocabList.insertNodeAfter(topicNum, vocab);
     }
 
+
+
+
+
+
+
+
+    /**
+     * Modify the topics
+     * @param selectedVocab
+     
+     */
+    private static void modifyTopicsMenu(Vocab selectedVocab) {
+
+        System.out.println("---------------------------");
+
+
+        System.out.println("Modify Topics Menu");
+
+        System.out.println("---------------------------");
+
+
+        System.out.println(" a add a word ");
+        System.out.println(" r remove a word ");
+        System.out.println(" c change a word ");
+        System.out.println(" 0 Exit ");
+        System.out.println("---------------------------");
+
+
+
+        String modifyChoice;
+        modifyChoice=sc3.next();
+        modifyChoice=modifyChoice.toLowerCase();
+
+
+        switch(modifyChoice){
+            case "a":{
+
+                System.out.println("Type a word and press Enter, or press Enter to end input");
+                sc3.nextLine();
+
+                String wordToAdd=sc3.nextLine();
+
+                if(!wordToAdd.isEmpty()){
+
+                    if(selectedVocab.getWords().findWord(wordToAdd)){
+                        System.out.println("Sorry, the word "+wordToAdd +" already exists.");
+                    }else{
+
+                        selectedVocab.getWords().addWord(wordToAdd);
+                        
+
+                    }
+
+                }
+
+                break;
+            }
+
+            case "r":{
+                System.out.println(" Enter a word:");
+                sc3.nextLine();
+                String wordToRemove=sc3.nextLine();
+                if(!wordToRemove.isEmpty()){
+                    selectedVocab.getWords().removeWord(wordToRemove);
+                    System.out.println("Word removed successfully.");
+                   
+                }
+
+                break;
+
+            }
+
+            case"c":{
+                System.out.println(" Enter a word:");
+                sc3.nextLine();
+                String oldWord=sc3.nextLine();
+
+                if(!selectedVocab.getWords().findWord(oldWord)){
+                    System.out.println("Sorry, theres is no word: "+oldWord);
+
+                }else{
+                    System.out.println("Enter the new word: ");
+                    String newWord=sc3.nextLine();
+
+                    if(!newWord.isEmpty()){
+                        selectedVocab.getWords().replaceWord(oldWord, newWord);
+                        System.out.println("Word changed successfully.");
+                    }
+                }
+
+
+
+                break;
+
+            }
+
+            default:{
+                System.out.println("Invalid input");
+                break;
+            }
+
+            
+        }
+
+        
+        
+    }
 
 
 

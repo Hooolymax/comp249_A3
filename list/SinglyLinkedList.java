@@ -111,10 +111,53 @@ public class SinglyLinkedList {
         return words;
     }
 
-    
-    /* public void printlnList() {
-        for (E element : this) {
-            System.out.println(element);
+
+
+    public void removeWord(String word) {
+        if(head==null){
+            System.out.println("The list is empty, no words to remove");
+            return;
         }
-    } */
+
+        if(head.word.equals(word)){
+            head=head.next;
+            System.out.println("Word removed successfully.");
+            return;
+           
+        }
+
+        Node current=head;
+        while(current.next!=null){
+            if (current.next.word.equals(word)){
+
+                current.next=current.next.next;
+                System.out.println("Word removed successfully.");
+                return;
+            }
+            current=current.next;
+        }
+
+        System.out.println("Sorry, there is no word:"+ word);
+       
+       
+    }
+
+
+    public void replaceWord(String oldWord, String newWord){
+        Node current=head;
+        while(current!=null){
+            if(current.word.equals(oldWord)){
+                current.word=newWord;
+                return;
+            }
+
+            current=current.next;
+        }
+
+    }
+    
+    
+
+
+
 }
