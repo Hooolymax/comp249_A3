@@ -291,6 +291,8 @@ public class DoublyLinkedList {
 
 
 
+
+    //Show the topics
     public void printListTopics() {
 
         if(head==null){
@@ -321,6 +323,12 @@ public class DoublyLinkedList {
     }
 
 
+    
+    
+    /**Find the vocab by index
+     * @param index
+     * @return Vocab
+     */
     public Vocab getVocab(int index) {
         if (index <= 0 || index > this.size()) {
             System.out.println("Invalid topic number.");
