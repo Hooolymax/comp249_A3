@@ -292,7 +292,7 @@ public class Driver {
                     try(PrintWriter fileWriter = new PrintWriter(new FileOutputStream("output/output_file.txt", true))){
 
                         ArrayList<ArrayList<String>> list = vocabList.getAllList();
-                        for (int i = 0; i < list.size(); i++){
+                        for (int i = 0; i < list.size(); i++){ 
                             fileWriter.println("#"+list.get(i).get(0)); // print topic
                             for (int j = 1; j < list.get(i).size(); j++){
                                 fileWriter.println(list.get(i).get(j)); // print word

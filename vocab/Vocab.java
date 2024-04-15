@@ -75,28 +75,15 @@ public class Vocab {
     public void printVocab() {
 
         System.out.println("Topic: " + topic);
-
-        ArrayList<String> wordlist=words.outputWordsList();
-
-    
-        if(!wordlist.isEmpty()){
-            int count=1;
-
-            for(String word: wordlist){
-                if(count%5==0){
-                    System.out.println();
-    
-                }
-                else{
-                    System.out.print(count +": "+word);
-                    System.out.print("     ");
-                }
-    
-                count++;
-               
+        ArrayList<String> wordlist = words.outputWordsList();
+        for (int i = 0; i < wordlist.size(); i++) {
+            System.out.print((i + 1) + ": " + wordlist.get(i) + "     ");
+            if ((i + 1) % 4 == 0) {
+                System.out.println();
             }
-        
-            
+        }
+        if (wordlist.size() % 4 != 0) { // Ensure there's a newline if not ended on a multiple of 4
+            System.out.println();
         }
     }
 
