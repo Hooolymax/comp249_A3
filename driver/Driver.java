@@ -343,29 +343,7 @@ public class Driver {
     }
     
 
-    public static void readVocab(ArrayList list) {
-
-        try {
-            Scanner reader1 = new Scanner(new FileInputStream("input/input_file.txt"));
-
-            while (reader1.hasNextLine()) {
-
-                String line = reader1.nextLine().trim();
-
-                if (line.startsWith("#")) {
-
-                    list.add(line.substring(1).trim());
-
-                }
-
-            }
-            reader1.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
+    
 
     /**
      * Loads vocabulary topics and their associated words from a specified file.
