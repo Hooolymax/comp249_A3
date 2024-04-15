@@ -6,10 +6,16 @@
 package list;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
+
+/**
+ * a singly-liked list to store the words within the Vocab objects
+ */
 public class SinglyLinkedList {
 
+    /**
+     * inner class representing one node of the list
+     */
     private class Node{
         String word;
         Node next;
@@ -27,13 +33,15 @@ public class SinglyLinkedList {
 
     private Node head;
 
-    /* private static class SNode<E> {
-    } */
-
     public SinglyLinkedList() {
         head = null;
     }
 
+
+    /**
+     * calculates the number of words (nodes) in the current list
+     * @return size
+     */
     public int size(){
         Node currNode = head;
         int count = 0;
@@ -44,6 +52,10 @@ public class SinglyLinkedList {
         return count;
     }
 
+
+    /**
+     * compares if this list is equal to another singly linked list
+     */
     public boolean equals(Object otherObject){
         if (otherObject == null)
             return false;
@@ -95,6 +107,11 @@ public class SinglyLinkedList {
         
     }
 
+    /**
+     * attempts to find the word in the words of this topic
+     * @param word to find
+     * @return true if the word was found
+     */
     public boolean findWord(String word){
         Node currNode = head;
         while (currNode != null) {
@@ -105,6 +122,12 @@ public class SinglyLinkedList {
         return false;
     }
 
+
+    /**
+     * finds all words which start with given letter
+     * @param given letter
+     * @return words starting with this letter
+     */
     public ArrayList<String> wordsStartingWithLetter(char letter){
         Node currNode = head;
         ArrayList<String> words = new ArrayList<>();
@@ -117,7 +140,10 @@ public class SinglyLinkedList {
     }
 
 
-
+    /**
+     * removes the word from the list
+     * @param word to remove
+     */
     public void removeWord(String word) {
         if(head==null){
             System.out.println("The list is empty, no words to remove");
@@ -148,6 +174,11 @@ public class SinglyLinkedList {
     }
 
 
+    /**
+     * replaces the word in the list with the new one
+     * @param oldWord
+     * @param newWord
+     */
     public void replaceWord(String oldWord, String newWord){
         Node current=head;
         while(current!=null){

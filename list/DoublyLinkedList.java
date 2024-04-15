@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import vocab.Vocab;
 
 
-
+/**
+ * a doubly linked list to store the Vocab objects
+ */
 public class DoublyLinkedList {
 
     /**
@@ -43,16 +45,20 @@ public class DoublyLinkedList {
 
     private Node head;
     private Node tail;
-    /* private int size; */
+    
 
     public DoublyLinkedList() {
 
-        /* size = 0; */
         head = null;
         tail = null;
 
     }
 
+
+    /**
+     * calculates the number of words (nodes) in the current list
+     * @return size
+     */
     public int size(){
         Node currNode = head;
         int count = 0;
@@ -63,6 +69,10 @@ public class DoublyLinkedList {
         return count;
     }
 
+
+    /**
+     * compares if this list is equal to another doubly linked list
+     */
     public boolean equals(Object otherObject){
         if (otherObject == null)
             return false;
@@ -88,7 +98,9 @@ public class DoublyLinkedList {
         
     }
 
+
     /**
+     * adds new node to the beginning
      * @param vocab
      */
     public void addVocab(Vocab vocab) {
@@ -105,10 +117,13 @@ public class DoublyLinkedList {
 
         }
 
-        /* size++; */
-
     }
 
+
+    /**
+     * outputs all the content of all vocab objects 
+     * @return two dimensional array list of topics and words in them
+     */
     public ArrayList<ArrayList<String>> getAllList() {
         ArrayList<ArrayList<String>> vocabs = new ArrayList<>();
         Node current = head;
@@ -120,6 +135,11 @@ public class DoublyLinkedList {
 
     }
 
+
+    /**
+     * returns all topic names in the list
+     * @return list of strings
+     */
     public ArrayList<String> outputTopics(){
         ArrayList<String> topics = new ArrayList<>();
         Node currNode = head;
@@ -206,6 +226,11 @@ public class DoublyLinkedList {
 
     }
 
+
+    /**
+     * removes the vocab (node) from the list
+     * @param nodeNum of node to remove
+     */
     public void removeNode(int nodeNum){
         if (nodeNum == 1){
             if (this.size() == 1){
@@ -231,6 +256,12 @@ public class DoublyLinkedList {
         
     }
 
+
+    /**
+     * finds which topics contain given word
+     * @param word
+     * @return name of topics which have the word
+     */
     public ArrayList<String> findTopicsWithWord(String word){
         Node currNode = head;
         ArrayList<String> topics = new ArrayList<>();
@@ -242,6 +273,12 @@ public class DoublyLinkedList {
         return topics;
     }
 
+
+    /**
+     * finds all words starting with given letter in all topics
+     * @param letter the word starts with
+     * @return list with all found words in all topics
+     */
     public ArrayList<String> findWordsByLetter(char letter){
         Node currNode = head;
         ArrayList<String> words = new ArrayList<>();
@@ -251,6 +288,8 @@ public class DoublyLinkedList {
         }
         return words;
     }
+
+
 
     public void printListTopics() {
 
@@ -281,6 +320,7 @@ public class DoublyLinkedList {
         
     }
 
+
     public Vocab getVocab(int index) {
         if (index <= 0 || index > this.size()) {
             System.out.println("Invalid topic number.");
@@ -301,8 +341,5 @@ public class DoublyLinkedList {
         }
     }
     
-    /* public int size() {
-        return size;
-    }
- */
+    
 }

@@ -15,14 +15,18 @@ import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Collections;
+
 
 import list.DoublyLinkedList;
 import list.SinglyLinkedList;
 import vocab.Vocab;
 
 
-
+/**
+ * a menudriven interactive program that allows students 
+ * to enter their new vocabulary words for a topic, or manipulate them,
+ * creating and deleting topics or words
+ */
 public class Driver {
 
     static Scanner sc = new Scanner(System.in);
@@ -31,6 +35,10 @@ public class Driver {
 
     static DoublyLinkedList vocabList = new DoublyLinkedList();
 
+    /**
+     * main 
+     * @param args
+     */
     public static void main(String[] args) {
 
 
@@ -334,6 +342,9 @@ public class Driver {
     }
 
     
+    /**
+     * creates a new output file or clears the existing one
+     */
     private static void clearFile() {
         try (PrintWriter writer = new PrintWriter("output/output_file.txt")) {
             // Clearing the file by opening it in overwrite mode and closing it immediately.
@@ -356,9 +367,6 @@ public class Driver {
      *         {@link SinglyLinkedList} of words.
      * @throws IOException if an input or output exception occurred
      */
-
-    
-
     public static DoublyLinkedList loadVocab(String filename) {
 
     
@@ -411,7 +419,9 @@ public class Driver {
 
 
 
-
+    /**
+     * displays menu of available topics with numeration and exit option
+     */
     public static void displayTopics(){
         ArrayList<String> topics = vocabList.outputTopics();
         int n = 1;
@@ -435,6 +445,13 @@ public class Driver {
     }
 
 
+
+    /**
+     * inserts topic after
+     * @param topicNum given topic number
+     * @param topicName to insert
+     * @param words to insert
+     */
     public static void insertTopicAfter(int topicNum, String topicName, SinglyLinkedList words){
         Vocab vocab = new Vocab(topicName, words);
         vocabList.insertNodeAfter(topicNum, vocab);

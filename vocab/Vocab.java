@@ -10,7 +10,9 @@ import java.util.ArrayList;
 
 import list.SinglyLinkedList;
 
-
+/**
+ * represents a vocab object which stores a topic name and the wors inside it in a singly linked list
+ */
 public class Vocab {
 
     String topic;
@@ -47,11 +49,6 @@ public class Vocab {
     }
 
     
-    
-    /* public void setWords(SinglyLinkedList words) {
-        this.words = words;
-    } */
-
  
     public boolean equals(Object obj) {
         if (obj == null)
@@ -72,6 +69,9 @@ public class Vocab {
         return true;
     }
 
+    /**
+     * formats and prints the vocab to console
+     */
     public void printVocab() {
 
         System.out.println("Topic: " + topic);
@@ -89,7 +89,10 @@ public class Vocab {
 
     
 
-    
+    /**
+     * converts vocab data into ArrayList of strings, where the first one is topic name
+     * @return the list
+     */
     public ArrayList<String> toList() {
         ArrayList<String> vocab= new ArrayList<>();
         vocab.add(topic);
@@ -97,6 +100,9 @@ public class Vocab {
         return vocab;
     }
 
+    /**
+     * prints topic name
+     */
     public void printTopics(){
         System.out.println(" " + topic);
     }
